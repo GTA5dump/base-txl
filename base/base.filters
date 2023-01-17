@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="memory">
+      <UniqueIdentifier>{91a34ad1-b349-46da-b4e4-a4ec3c360aab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utility">
+      <UniqueIdentifier>{fc1ac60d-c6e3-4d91-9dc5-055071ddb358}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hooking">
+      <UniqueIdentifier>{ff2dc389-7136-43bc-b3ba-8b8215ffabd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hooking\detour">
+      <UniqueIdentifier>{c15bfd07-7c8f-4a92-b18b-fdeb1a78f43c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="log">
+      <UniqueIdentifier>{b7818b76-93e9-4207-b97c-c0cc57a4764e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hooking\hooks">
+      <UniqueIdentifier>{6a594935-90ed-4690-b17c-8be358d68168}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="pointers">
+      <UniqueIdentifier>{7ef0ffad-5cee-435f-bfd2-8c8fb1890a3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="invoker">
+      <UniqueIdentifier>{c5fd3640-c82e-44b2-ac98-0639a9fd618a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="fiber">
+      <UniqueIdentifier>{2a307c61-6caf-4e69-91c5-b494986c30fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="rage">
+      <UniqueIdentifier>{772662e5-0a90-4aa8-b979-cec4063c9659}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="ui">
+      <UniqueIdentifier>{02b0e083-078a-4b7f-9b5c-e3ecb081a162}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\utilities.hpp">
+      <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\memory.hpp">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="hooking\hooking.h">
+      <Filter>hooking</Filter>
+    </ClInclude>
+    <ClInclude Include="hooking\detour\detour.hpp">
+      <Filter>hooking\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="log\log.hpp">
+      <Filter>log</Filter>
+    </ClInclude>
+    <ClInclude Include="hooking\hooks\script_virtual_machine.hpp">
+      <Filter>hooking\hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="pointers\pointers.hpp">
+      <Filter>pointers</Filter>
+    </ClInclude>
+    <ClInclude Include="invoker\invoker.hpp">
+      <Filter>invoker</Filter>
+    </ClInclude>
+    <ClInclude Include="fiber\fiber.hpp">
+      <Filter>fiber</Filter>
+    </ClInclude>
+    <ClInclude Include="invoker\crossmap.hpp">
+      <Filter>invoker</Filter>
+    </ClInclude>
+    <ClInclude Include="rage\classes.hpp">
+      <Filter>rage</Filter>
+    </ClInclude>
+    <ClInclude Include="invoker\Natives.hpp">
+      <Filter>invoker</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\interface.hpp">
+      <Filter>ui</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="memory\memory.cpp">
+      <Filter>memory</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities\utilities.cpp">
+      <Filter>utility</Filter>
+    </ClCompile>
+    <ClCompile Include="hooking\hooking.cpp">
+      <Filter>hooking</Filter>
+    </ClCompile>
+    <ClCompile Include="log\log.cpp">
+      <Filter>log</Filter>
+    </ClCompile>
+    <ClCompile Include="pointers\pointers.cpp">
+      <Filter>pointers</Filter>
+    </ClCompile>
+    <ClCompile Include="common.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="invoker\invoker.cpp">
+      <Filter>invoker</Filter>
+    </ClCompile>
+    <ClCompile Include="fiber\fiber.cpp">
+      <Filter>fiber</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\interface.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="entrypoint.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\lib\bin\minhook.lib" />
+  </ItemGroup>
+</Project>

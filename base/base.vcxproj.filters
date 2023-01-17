@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="entrypoint.cpp" />
+    <ClCompile Include="invoker\invoker.cpp">
+      <Filter>invoker</Filter>
+    </ClCompile>
+    <ClCompile Include="utilities\utilities.cpp">
+      <Filter>utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="common.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="hooking\hooking.cpp">
+      <Filter>hooking\core</Filter>
+    </ClCompile>
+    <ClCompile Include="fiber\fiber.cpp">
+      <Filter>fiber</Filter>
+    </ClCompile>
+    <ClCompile Include="log\log.cpp">
+      <Filter>log</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\memory.cpp">
+      <Filter>memory</Filter>
+    </ClCompile>
+    <ClCompile Include="pointers\pointers.cpp">
+      <Filter>memory</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\interface.cpp">
+      <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="script\script.cpp">
+      <Filter>script</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="rage\classes.hpp">
+      <Filter>rage</Filter>
+    </ClInclude>
+    <ClInclude Include="invoker\crossmap.hpp">
+      <Filter>invoker</Filter>
+    </ClInclude>
+    <ClInclude Include="invoker\invoker.hpp">
+      <Filter>invoker</Filter>
+    </ClInclude>
+    <ClInclude Include="utilities\utilities.hpp">
+      <Filter>utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="common.hpp">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="hooking\hooks\script_virtual_machine.hpp">
+      <Filter>hooking\hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="hooking\detour\detour.hpp">
+      <Filter>hooking\detour</Filter>
+    </ClInclude>
+    <ClInclude Include="hooking\hooking.hpp">
+      <Filter>hooking\core</Filter>
+    </ClInclude>
+    <ClInclude Include="fiber\fiber.hpp">
+      <Filter>fiber</Filter>
+    </ClInclude>
+    <ClInclude Include="log\log.hpp">
+      <Filter>log</Filter>
+    </ClInclude>
+    <ClInclude Include="memory\memory.hpp">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="pointers\pointers.hpp">
+      <Filter>memory</Filter>
+    </ClInclude>
+    <ClInclude Include="invoker\Natives.hpp">
+      <Filter>invoker</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\interface.hpp">
+      <Filter>ui</Filter>
+    </ClInclude>
+    <ClInclude Include="script\script.hpp">
+      <Filter>script</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\lib\bin\minhook.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="rage">
+      <UniqueIdentifier>{7387d412-3305-4bf0-9871-2c0bb8919932}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities">
+      <UniqueIdentifier>{4f14a5cb-dea9-48eb-8d62-018edce19bc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hooking">
+      <UniqueIdentifier>{f75d01b7-e414-4674-a911-0d53d5120973}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hooking\core">
+      <UniqueIdentifier>{451e7e8a-a260-4ec8-b1ba-9971f5cf390d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hooking\detour">
+      <UniqueIdentifier>{912bfe12-dbd0-41c8-8dd7-dcf5752af0ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hooking\hooks">
+      <UniqueIdentifier>{e406c715-2899-4353-a084-d7fd1ca04c1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="fiber">
+      <UniqueIdentifier>{5a0fa850-63d0-45f1-ae15-2b960eee105b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="log">
+      <UniqueIdentifier>{6db5af75-7931-4dc1-920c-0da91aa32e87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="memory">
+      <UniqueIdentifier>{420a7111-147c-4b6c-a324-d77a7ccff9cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui">
+      <UniqueIdentifier>{28f90a98-9772-4607-835b-d0691d1df9ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script">
+      <UniqueIdentifier>{488f9c33-e07b-4e1c-b334-eb7e892152f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{ffd3801f-48fa-4880-82f5-1fd58283b810}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="invoker">
+      <UniqueIdentifier>{b735fdcb-8604-47bd-bde9-0ca6c495a9b7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
