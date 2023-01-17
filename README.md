@@ -18,7 +18,7 @@
 - Fast pattern scanner 80 sigs in 1.3s 
 - Native hooking 
 - Simple Fiber system 
-- Alligned interface 
+- Aligned interface 
 - Unloading at runtime
 
 # Compiling
