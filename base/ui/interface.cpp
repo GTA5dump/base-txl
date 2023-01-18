@@ -153,6 +153,7 @@ namespace base {
 			draw_sub_menu(m_current_sub_menu);
 			draw_option_background();
 			m_current_menu();
+			draw_footer();
 		}
 		m_select_pressed = false;
 		m_up_pressed = false;
@@ -469,6 +470,34 @@ namespace base {
 		}
 		if (m_option_count <= m_max_vis_options)
 			m_draw_base_y += m_option_height;
+	}
+	void interface::draw_footer() {
+		float size = m_footer_arrow_size;
+		float rotation = 0.f;
+		const char* texture = "shop_arrows_upanddown";
+		if (m_current_option == 1) {
+			rotation = 90.f;
+			texture = "arrowright";
+			size *= 0.7f;
+		}
+		else if (m_current_option == m_option_count) {
+			rotation = 270.f;
+			texture = "arrowright";
+			size *= 0.7f;
+		}
+		if (m_option_count >= m_max_vis_options && m_dynamic_footer) {
+			Vector2 sizee = get_spirit_scale(size);
+			draw_rect(m_footer_background, Vector2(m_menu_pos.x, m_draw_base_y + (m_footer_height / 2.f)), Vector2(m_width, m_footer_height));
+			draw_sprite("commonmenu", texture, Vector2(m_menu_pos.x, m_draw_base_y + (m_footer_height / 2.f)), sizee, rotation, {255, 255, 255, 255});
+			m_draw_base_y += m_footer_height;
+		}
+		else if (!m_dynamic_footer) {
+			Vector2 sizee = get_spirit_scale(size);
+			draw_rect(m_footer_background, Vector2(m_menu_pos.x, m_draw_base_y + (m_footer_height / 2.f)), Vector2(m_width, m_footer_height));
+			draw_sprite("commonmenu", texture, Vector2(m_menu_pos.x, m_draw_base_y + (m_footer_height / 2.f)), sizee, rotation, { 255, 255, 255, 255 });
+			m_draw_base_y += m_footer_height;
+		}
+		
 	}
 }
 

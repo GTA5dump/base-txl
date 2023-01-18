@@ -5,8 +5,10 @@ namespace base {
 	extern void settings_options_submenu();
 	extern void settings_header_submenu();
 	extern void settings_submenu_submenu();
+	extern void settings_footer_submenu();
+	extern void settings_footer_submenu_bg_color();
 	extern void settings_options_text_color();
-	extern void settings_header_background_color();
+	extern void settings_header_bg_color();
 	extern void spawner_submenu();
 	extern void spawner_vehicle_submenu();
 	extern void demo_submenu();

@@ -40,7 +40,7 @@ namespace base {
 		g_interface.draw_number("Rotated Arrow Size", &g_interface.m_arrow_rotated_size, 0.f, 0.1f, 0.001f, false);
 	}
 	void settings_header_submenu() {
-		g_interface.draw_sub("Header Background Color", settings_header_background_color); 
+		g_interface.draw_sub("Header Background Color", settings_header_bg_color); 
 		g_interface.draw_number("Header Height", &g_interface.m_header_height, 0.f, 0.200f, 0.001f, false);
 	}
 	void settings_submenu_submenu() {
@@ -52,12 +52,25 @@ namespace base {
 		g_interface.draw_number("Alpha", &g_interface.m_option_text.a, 0, 255, 1);
 		g_interface.draw_rect(g_interface.m_option_text, Vector2(g_interface.m_menu_pos.x, g_interface.m_draw_base_y + (g_interface.m_option_height / 2.f)), Vector2(g_interface.m_width, g_interface.m_option_height));
 	}
-	void settings_header_background_color() {
+	void settings_header_bg_color() {
 		g_interface.draw_number("Red", &g_interface.m_header_back_ground.r, 0, 255, 1);
 		g_interface.draw_number("Green", &g_interface.m_header_back_ground.g, 0, 255, 1);
 		g_interface.draw_number("Blue", &g_interface.m_header_back_ground.b, 0, 255, 1);
 		g_interface.draw_number("Alpha", &g_interface.m_header_back_ground.a, 0, 255, 1);
 		g_interface.draw_rect(g_interface.m_header_back_ground, Vector2(g_interface.m_menu_pos.x, g_interface.m_draw_base_y + (g_interface.m_option_height / 2.f)), Vector2(g_interface.m_width, g_interface.m_option_height));
+	}
+	void settings_footer_submenu() {
+		g_interface.draw_sub("Footer Background Color", settings_footer_submenu_bg_color);
+		g_interface.draw_bool("Dynamic Footer", &g_interface.m_dynamic_footer);
+		g_interface.draw_number("Footer Height", &g_interface.m_footer_height, 0.f, 0.170f, 0.001f, false);
+		g_interface.draw_number("Footer Arrow Size", &g_interface.m_footer_arrow_size, 0.f, 0.170f, 0.001f, false);
+	}
+	void settings_footer_submenu_bg_color() {
+		g_interface.draw_number("Red", &g_interface.m_footer_background.r, 0, 255, 1);
+		g_interface.draw_number("Green", &g_interface.m_footer_background.g, 0, 255, 1);
+		g_interface.draw_number("Blue", &g_interface.m_footer_background.b, 0, 255, 1);
+		g_interface.draw_number("Alpha", &g_interface.m_footer_background.a, 0, 255, 1);
+		g_interface.draw_rect(g_interface.m_footer_background, Vector2(g_interface.m_menu_pos.x, g_interface.m_draw_base_y + (g_interface.m_option_height / 2.f)), Vector2(g_interface.m_width, g_interface.m_option_height));
 	}
 	void spawner_submenu() {
 		for (std::int32_t i = 0; i < 23; i++) {

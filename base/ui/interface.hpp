@@ -72,28 +72,32 @@ namespace base {
 		RGBA m_option_text_selected = { 0, 0, 0, 255 };
 		// Toggle
 		float m_toggle_size = { 0.028f };
-
 		RGBA m_toggle_color_on = { 0, 255, 0, 255 };
 		RGBA m_toggle_color_off = { 255, 0, 0, 255 };
-		// Number
 		float m_arrow_rotated_size = { 0.035f };
 		// Break
 		int m_break_font = 1;
 		float m_break_font_size = { 0.4f };
 
 		RGBA m_break_text = { 255, 255, 255, 255 };
+		// Footer 
+		bool m_dynamic_footer = { true };
+
+		float m_footer_height = { 0.035f };
+		float m_footer_arrow_size = { 0.035f };
+
+		RGBA m_footer_background = { 0, 0, 0, 255 };
 		// Option Desc 
 		int m_desc_font = 0;
 
 		RGBA m_desc_background = { 0, 0, 0, 200 };
 		RGBA m_desc_line = { 255, 255, 255, 255 };
-
 		// Options
 		int m_max_vis_options = 13;
 		int m_option_count;
 		int m_current_option;
 		int m_previous_option;
-		// menu
+		// Menu
 		int m_menu_level;
 		void(*m_current_menu)();
 		void(*m_menu_array[1000])();
