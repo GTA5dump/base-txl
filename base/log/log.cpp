@@ -1,6 +1,18 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "log.hpp"
 namespace base {
+	void log::attach() {
+		init_console_handles();
+		init_files_handles();
+		g_log.send("Log", "Attached");
+	}
+
+	void log::detach() {
+		g_log.send("Log", "Detached");
+		free_console_handles();
+		free_file_handles();
+	}
+
 	void log::init_console_handles() {
 		AttachConsole(GetCurrentProcessId());
 		AllocConsole();

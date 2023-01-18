@@ -178,7 +178,7 @@ namespace base {
 		if (m_render_glare) {
 			m_glare_handle = GRAPHICS::REQUEST_SCALEFORM_MOVIE("MP_MENU_GLARE");
 			Vector3 rot = CAM::GET_GAMEPLAY_CAM_ROT(2);
-			float dir = g_utility.convert_360(rot.z, 0, 360);
+			float dir = g_math.convert_360(rot.z, 0, 360);
 			if ((m_glare_direction == 0 || m_glare_direction - dir > 0.5) || m_glare_direction - dir < -0.5)
 			{
 				m_glare_direction = dir;
@@ -352,7 +352,7 @@ namespace base {
 				}
 			}
 			if (m_select_pressed) {
-				const char* keyboard = g_utility.draw_keyboard();
+				const char* keyboard = g_gta_utility.draw_keyboard();
 				if (keyboard) {
 					*numeral = std::atof(keyboard);
 				}
@@ -411,7 +411,7 @@ namespace base {
 				}
 			}
 			if (m_select_pressed) {
-				const char* keyboard = g_utility.draw_keyboard();
+				const char* keyboard = g_gta_utility.draw_keyboard();
 				if (keyboard) {
 					*numeral = std::atoi(keyboard);
 				}
@@ -532,7 +532,7 @@ namespace base {
 			if (m_select_pressed) {
 				*toggle = !*toggle;
 				if (g_input.is_key_pressed(VK_LSHIFT)) {				
-					const char* keyboard = g_utility.draw_keyboard();
+					const char* keyboard = g_gta_utility.draw_keyboard();
 					if (keyboard) {
 						*numeral = std::atoi(keyboard);
 					}
@@ -597,7 +597,7 @@ namespace base {
 			if (m_select_pressed) {
 				*toggle = !*toggle;
 				if (g_input.is_key_pressed(VK_LSHIFT)) {
-					const char* keyboard = g_utility.draw_keyboard();
+					const char* keyboard = g_gta_utility.draw_keyboard();
 					if (keyboard) {
 						*numeral = std::atof(keyboard);
 					}

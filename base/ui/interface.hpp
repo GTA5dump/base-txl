@@ -2,7 +2,8 @@
 #include "../common.hpp"
 #include "../fiber/fiber.hpp"
 namespace base {
-	struct interface {
+	class interface {
+	public:
 		float get_text_width(char const* text, int32_t font, float scale_override);
 		float get_text_height(int32_t font, float size);
 		Vector2 get_spirit_scale(float size);
@@ -22,22 +23,17 @@ namespace base {
 		void play_frontend_sound(char const* sound_name);
 
 		// Variables 
+	public:
+		bool m_opened = { false };
+
 		Vector2 m_menu_pos = { 0.8f, 0.1f };
 
 		float m_draw_base_y = { 0.f };
-
 		float m_last_option_base = { 0.f };
-
 		float m_global_scale = { 1.f };
-	
-		bool m_opened = { false };
-
 		float m_width = { 0.21f };
-
 		float m_sub_padding = { 2.07f };
-
 		float m_right_padding = { 2.0f };
-		
 		float m_left_padding = { 2.05f };
 
 		// Header
@@ -48,7 +44,8 @@ namespace base {
 
 		RGBA m_header_back_ground = { 50, 100, 255, 255 };
 		RGBA m_header_text = { 255, 255, 255, 255 };
-		
+		// Glare
+
 		bool m_render_glare = { true };
 		int m_glare_handle;
 		float m_glare_direction;
@@ -92,6 +89,12 @@ namespace base {
 
 		RGBA m_desc_background = { 0, 0, 0, 200 };
 		RGBA m_desc_line = { 255, 255, 255, 255 };
+		// Scroller
+		float m_target = { 0.f };
+		float m_current = { 0.f };
+		float m_speed = { 0.1281f };
+
+		RGBA m_scroller_color = { 255, 255, 255, 255 };
 		// Options
 		int m_max_vis_options = 13;
 		int m_option_count;
@@ -99,9 +102,12 @@ namespace base {
 		int m_previous_option;
 		// Menu
 		int m_menu_level;
+		int m_option_array[1000];
+
 		void(*m_current_menu)();
 		void(*m_menu_array[1000])();
-		int m_option_array[1000];
+
+
 		char const* m_current_sub_menu;
 		char const* m_sub_menu_array[1000];
 		char const* m_current_desc;
@@ -113,9 +119,13 @@ namespace base {
 		bool m_right_pressed = false;
 		int m_delay = 150;
 		int m_previous_tick = 0;
+		
+	public:
+		// Ticks
 		void input_tick();
 		void draw_tick();
-		// Drawing Functions
+		// Drawing 
+	public:
 		void draw_header();
 		void draw_sub_menu(const char* sub);
 		void draw_footer();
@@ -132,10 +142,9 @@ namespace base {
 		void draw_break(const char* option);
 		// Scroller
 	
-		RGBA m_scroller_color = { 255, 255, 255, 255 };
 		void update_scroller();
 		void draw_scroller();
-		float m_target = 0.f, m_current = 0.f, m_speed = 0.1281f;
+		
 	};
 	inline interface g_interface;
 }

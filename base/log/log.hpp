@@ -2,22 +2,20 @@
 #include "../common.hpp"
 #pragma warning(disable : 4996) //_CRT_SECURE_NO_WARNINGS
 namespace base {
-	struct log {
-		void attach() {
-			init_console_handles();
-			init_files_handles();
-		}
-
-		void deattach() {
-			free_console_handles();
-			free_file_handles();
-		}
-
+	class log {
+	private:
+		std::filesystem::path m_path{};
+		std::ofstream m_file{};
+		std::ofstream m_console{};
+		HWND m_console_hwnd;
+	public:
+		void attach();
+		void detach();
 		void init_console_handles();
 		void init_files_handles();
 		void free_console_handles();
 		void free_file_handles();
-
+	public:
 		template <typename ...arguments>
 		void send(std::string title, std::string message, arguments... args) {
 			auto get_time = std::time(nullptr);
@@ -26,11 +24,6 @@ namespace base {
 			m_console << messageS << std::endl;
 			m_file << messageS << '\n';
 		}
-
-		std::filesystem::path m_path{};
-		std::ofstream m_file{};
-		std::ofstream m_console{};
-		HWND m_console_hwnd;
 	};
 	inline log g_log;
 }

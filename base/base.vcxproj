@@ -156,13 +156,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="core\core.hpp" />
     <ClInclude Include="fiber\fiber.hpp" />
     <ClInclude Include="hooking\detour\detour.hpp" />
     <ClInclude Include="hooking\hooking.hpp" />
     <ClInclude Include="hooking\hooks\script_virtual_machine.hpp" />
     <ClInclude Include="invoker\crossmap.hpp" />
     <ClInclude Include="invoker\invoker.hpp" />
-    <ClInclude Include="invoker\Natives.hpp" />
+    <ClInclude Include="invoker\natives.hpp" />
     <ClInclude Include="log\log.hpp" />
     <ClInclude Include="common.hpp" />
     <ClInclude Include="memory\memory.hpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="utilities\utilities.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="core\core.cpp" />
     <ClCompile Include="entrypoint.cpp" />
     <ClCompile Include="fiber\fiber.cpp" />
     <ClCompile Include="hooking\hooking.cpp" />

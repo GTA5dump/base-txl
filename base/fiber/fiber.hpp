@@ -3,13 +3,14 @@
 #include <windows.h> 
 
 namespace base {
-	typedef struct fiber {
+	struct fiber {
 		void* m_main_fiber;
 		void* m_script_fiber;
 		void (*m_func)();
 		uint32_t m_wake_at;
-	} fiber;
-	struct fibers {
+	};
+	class fibers {
+	public:
 		void add(fiber* fiber, void(*function)());
 		void remove(fiber* fiber);
 		void tick(fiber* fiber);

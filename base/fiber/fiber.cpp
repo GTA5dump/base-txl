@@ -8,9 +8,9 @@ namespace base {
 		fiber->m_wake_at = GetTickCount();
 	}
 	void fibers::remove(fiber* fiber) {
-			if (fiber->m_script_fiber) {
-				DeleteFiber(fiber->m_script_fiber);
-			}
+		if (fiber->m_script_fiber != nullptr) {
+			DeleteFiber(fiber->m_script_fiber);
+		}
 	}
 	void fibers::tick(fiber* fiber) {
 		if (GetTickCount() < fiber->m_wake_at) {

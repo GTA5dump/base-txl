@@ -32,6 +32,9 @@
     <ClCompile Include="script\script.cpp">
       <Filter>script</Filter>
     </ClCompile>
+    <ClCompile Include="core\core.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="rage\classes.hpp">
@@ -70,7 +73,7 @@
     <ClInclude Include="pointers\pointers.hpp">
       <Filter>memory</Filter>
     </ClInclude>
-    <ClInclude Include="invoker\Natives.hpp">
+    <ClInclude Include="invoker\natives.hpp">
       <Filter>invoker</Filter>
     </ClInclude>
     <ClInclude Include="ui\interface.hpp">
@@ -78,6 +81,9 @@
     </ClInclude>
     <ClInclude Include="script\script.hpp">
       <Filter>script</Filter>
+    </ClInclude>
+    <ClInclude Include="core\core.hpp">
+      <Filter>core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +128,9 @@
     </Filter>
     <Filter Include="invoker">
       <UniqueIdentifier>{b735fdcb-8604-47bd-bde9-0ca6c495a9b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{fdbfef31-449d-466f-aa4b-b67d3aed779c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

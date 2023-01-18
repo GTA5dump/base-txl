@@ -9,6 +9,7 @@ namespace base {
 	void input::initialize() {
 		m_hwnd = FindWindowA("grcWindow", nullptr);
 	}
+
 	bool input::is_key_pressed(const int virtual_key) {
 		if (GetForegroundWindow() == m_hwnd) {
 			if (GetAsyncKeyState(virtual_key) & 0x8000) {
@@ -17,6 +18,7 @@ namespace base {
 		}
 		return false;
 	}
+
 	std::string utility::get_documents_path() {
 		wchar_t Folder[1024];
 		HRESULT hr = SHGetFolderPathW(0, CSIDL_MYDOCUMENTS, 0, 0, Folder);
@@ -28,18 +30,12 @@ namespace base {
 		}
 		else return "";
 	}
-	float utility::convert_360(float base, float min, float max) {
-		float fVar0;
-		if (min == max) return min;
-		fVar0 = max - min;
-		base -= SYSTEM::ROUND(base - min / fVar0) * fVar0;
-		if (base < min) base += fVar0;
-		return base;
-	}
+
 	void utility::load_ytd(const char* path, const char* file_name) {
 		int id;
 		g_pointers.m_register_file(&id, path, true, file_name, false);
 	}
+
 	const char* utility::fixed_decimel(float number) {
 		double intpart;
 		double fracpart = std::modf(number, &intpart);
@@ -53,7 +49,8 @@ namespace base {
 		std::string text = int_part + frac_part;
 		return text.c_str();
 	}
-	const char* utility::draw_keyboard() {
+
+	const char* gta_utility::draw_keyboard() {
 		MISC::DISPLAY_ONSCREEN_KEYBOARD(1, "", "", "", "", "", "", 10);
 		while (MISC::UPDATE_ONSCREEN_KEYBOARD() == 0) {
 			g_fibers.wait(&g_main_fiber);
@@ -63,7 +60,8 @@ namespace base {
 		}
 		return MISC::GET_ONSCREEN_KEYBOARD_RESULT();
 	}
-	rage::scrProgram* utility::get_program_by_hash(std::uint32_t hash) {
+
+	rage::scrProgram* gta_utility::get_program_by_hash(std::uint32_t hash) {
 		std::uint32_t programs = *(std::uint32_t*)(g_pointers.m_streamed_scripts + 0x18);
 		std::uint64_t program_list = *(std::uint64_t*)g_pointers.m_streamed_scripts;
 		for (std::uint32_t i = 0; i < programs; i++) {
@@ -74,17 +72,20 @@ namespace base {
 		}
 		return nullptr;
     }
-	const char* utility::get_vehicle_class_name(int id) {
+
+	const char* gta_utility::get_vehicle_class_name(int id) {
 		std::stringstream ss; ss << "VEH_CLASS_" << id;
 		return HUD::GET_LABEL_TEXT_(ss.str().c_str()) == "NULL" ? "Unknown Class" : HUD::GET_LABEL_TEXT_(ss.str().c_str());
 	}
-	void utility::request_model(std::uint32_t hash) {
+
+	void gta_utility::request_model(std::uint32_t hash) {
 		STREAMING::REQUEST_MODEL(hash);
 		while (!STREAMING::HAS_MODEL_LOADED(hash)) {
 			g_fibers.wait(&g_main_fiber);
 		}
 	}
-	Vehicle utility::spawn_vehicle(std::uint32_t hash) {
+
+	Vehicle gta_utility::spawn_vehicle(std::uint32_t hash) {
 		if (!STREAMING::IS_MODEL_VALID(hash)) {
 			return NULL;
 		}
@@ -92,8 +93,8 @@ namespace base {
 		float forward = 5.f;
 		Vector3 coords = ENTITY::GET_ENTITY_COORDS(PLAYER::PLAYER_PED_ID(), false);
 		float heading = ENTITY::GET_ENTITY_HEADING(PLAYER::PLAYER_PED_ID());
-		float x = forward * sin(deg_to_rad(heading)) * -1.f;
-		float y = forward * cos(deg_to_rad(heading));
+		float x = forward * sin(g_math.deg_to_rad(heading)) * -1.f;
+		float y = forward * cos(g_math.deg_to_rad(heading));
 		*(unsigned short*)g_pointers.m_set_this_thread_networked = 0x9090; // we set this thread as networked so we can spawn the vehicle / u can add rage classes and use excute under thread instead of this
 		Vehicle the_vehicle = VEHICLE::CREATE_VEHICLE(hash, coords.x + x, coords.y + y, coords.z, heading, NETWORK::NETWORK_IS_SESSION_ACTIVE(), false, false);
 		std::int32_t net_id = NETWORK::VEH_TO_NET(the_vehicle);
@@ -110,7 +111,17 @@ namespace base {
 		}
 		return NULL;
 	}
-	float utility::deg_to_rad(float degs) {
+
+	float math::deg_to_rad(float degs) {
 		return degs * 3.141592653589793f / 180.f;
+	}
+
+	float math::convert_360(float base, float min, float max) {
+		float fVar0;
+		if (min == max) return min;
+		fVar0 = max - min;
+		base -= std::round(base - min / fVar0) * fVar0;
+		if (base < min) base += fVar0;
+		return base;
 	}
 }

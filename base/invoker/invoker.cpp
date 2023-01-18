@@ -10,6 +10,7 @@ namespace base {
 		   rage::scrNativeHandler handler = g_pointers.m_get_native_handler(g_pointers.m_native_registration_table, mapping.second);
 		   m_cache.emplace(mapping.first, handler);	
 		}
+		g_log.send("Invoker", "Natives cached");
 	}
 
 	void invoker::begin_call() {

@@ -4,14 +4,6 @@
 #include "../invoker/Natives.hpp"
 #include "../log/log.hpp"
 namespace base {
-	const char* array_example[] = {
-	"Place Holder 1",
-	"Place Holder 2",
-	"Place Holder 3"
-	};
-	int array_position_example;
-	int number_example;
-	bool bool_example;
 	void home_submenu() {
 		g_interface.draw_sub("Demo", demo_submenu);
 		g_interface.draw_sub("Spawner", spawner_submenu);
@@ -74,7 +66,7 @@ namespace base {
 	}
 	void spawner_submenu() {
 		for (std::int32_t i = 0; i < 23; i++) {
-			if (g_interface.draw_sub(g_utility.get_vehicle_class_name(i), spawner_vehicle_submenu)) {
+			if (g_interface.draw_sub(g_gta_utility.get_vehicle_class_name(i), spawner_vehicle_submenu)) {
 				m_selected_vehicle_class = i;
 			}
 		}
@@ -105,7 +97,7 @@ namespace base {
 								}
 							}
 							if (g_interface.draw_regular(ss.str().c_str())) {
-								g_utility.spawn_vehicle(*(std::uint32_t*)(info + 0x18));
+								g_gta_utility.spawn_vehicle(*(std::uint32_t*)(info + 0x18));
 							}
 						}
 					}

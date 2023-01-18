@@ -2,7 +2,8 @@
 #include "MinHook.h"
 #include "../../log/log.hpp"
 namespace base {
-	struct detour_hook {
+	class detour_hook {
+	public:
 		void create(char const* name, void* ptr, void* dtr, bool disable = false) {
 			m_name = name;
 			m_ptr = ptr; 
@@ -41,7 +42,7 @@ namespace base {
 		{
 			return static_cast<T>(m_og);
 		}
-
+	private:
 		char const* m_name;
 		void* m_dtr;
 		void* m_ptr;

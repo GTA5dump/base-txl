@@ -11,6 +11,7 @@ namespace base {
 
 		MH_EnableHook(MH_ALL_HOOKS);
 	}
+
 	void hooking::detach() {
 		remove_script_hooks();
 
@@ -20,13 +21,14 @@ namespace base {
 		
 		MH_Uninitialize();
 	}
+
 	bool hooking::hook_script_native(const char* script_name, std::uint64_t native_hash, void* destination) {
 		// Credits vali
 		if (auto val = g_invoker.m_cache.find(native_hash); val != g_invoker.m_cache.end()) {
 			void* handler = (void*)val->second;
 			std::uint64_t* table = *(std::uint64_t**)(g_pointers.m_streamed_scripts);
 			if (table == NULL) return false;
-			rage::scrProgram* script_program = g_utility.get_program_by_hash(joaat(script_name));
+			rage::scrProgram* script_program = g_gta_utility.get_program_by_hash(joaat(script_name));
 			if (script_program && script_program->is_valid()) {
 				void** script_handler = script_program->get_address_of_native_entrypoint(handler);
 				if (script_handler) {
@@ -39,6 +41,7 @@ namespace base {
 		}
 		return false;
 	}
+
 	void hooking::remove_script_hooks() {
 		// Credits vali
 		for (auto& hooked_native : m_hooked_natives) {
