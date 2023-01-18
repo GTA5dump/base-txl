@@ -126,6 +126,9 @@ namespace base {
 		bool draw_number(const char* option, float* numeral, float min, float max, float step = 1.0f, bool action_input = false);
 		bool draw_number(const char* option, int* numeral, int min, int max, int step = 1, bool action_input = false);
 		bool draw_array(const char* option, const char** array, int* position, bool action_input = false);
+		bool draw_bool_number(const char* option, bool* toggle, int* numeral, int min, int max, int step = 1, bool action_input = false);
+		bool draw_bool_number(const char* option, bool* toggle, float* numeral, float min, float max, float step = 1.0f, bool action_input = false);
+		bool draw_bool_array(const char* option, bool* toggle, const char** array, int* position, bool action_input = false);
 		void draw_break(const char* option);
 		// Scroller
 	

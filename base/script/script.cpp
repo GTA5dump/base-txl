@@ -126,6 +126,12 @@ namespace base {
 		if (g_interface.draw_array("Example Array", array_example, &array_position_example, true)) {
 			g_log.send("Menu", "Value is {}", array_example[array_position_example]);
 		}
+		if (g_interface.draw_bool_number("Example Bool Number", &bool_example, &number_example, 0, 10, 2, true)) {
+			g_log.send("Menu", "Invoke Function");
+		}
+		if (g_interface.draw_bool_array("Example Bool Array", &bool_example, array_example, &array_position_example, true)) {
+			g_log.send("Menu", "Value is {} & bool value is", array_example[array_position_example], bool_example);
+		}
 	}
 	void main_script() {
 		while (true) {
