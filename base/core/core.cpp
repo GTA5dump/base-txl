@@ -14,7 +14,7 @@ namespace base {
 		    g_invoker.cache_handler();
 		    g_script.attach();
 			while (g_running) {
-				if (GetAsyncKeyState(VK_END) & 0x8000) {
+				if (GetAsyncKeyState(VK_END)) {
 					g_running = false;
 				}
 				std::this_thread::sleep_for(1ms);
