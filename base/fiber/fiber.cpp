@@ -1,16 +1,13 @@
 #include "fiber.hpp"
+#include "../log/log.hpp"
 namespace base {
 	void fibers::add(fiber* fiber, void(*function)()) {
-		if (fiber->m_script_fiber == nullptr) {
-			fiber->m_script_fiber = CreateFiber(0, reinterpret_cast<LPFIBER_START_ROUTINE>(function), this);
-		}
+		fiber->m_script_fiber = CreateFiber(0, reinterpret_cast<LPFIBER_START_ROUTINE>(function), this);
 		fiber->m_func = function;
 		fiber->m_wake_at = GetTickCount();
 	}
 	void fibers::remove(fiber* fiber) {
-		if (fiber->m_script_fiber != nullptr) {
-			DeleteFiber(fiber->m_script_fiber);
-		}
+		// fix later
 	}
 	void fibers::tick(fiber* fiber) {
 		if (GetTickCount() < fiber->m_wake_at) {

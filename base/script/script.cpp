@@ -6,6 +6,7 @@
 namespace base {
 	void home_submenu() {
 		g_interface.draw_sub("Demo", demo_submenu);
+		g_interface.draw_sub("Demo", demo_submenu);
 		g_interface.draw_sub("Spawner", spawner_submenu);
 		g_interface.draw_sub("Settings", settings_submenu);
 	}

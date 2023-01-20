@@ -36,8 +36,7 @@ namespace base
         }
         return bytes;
     }
-
-    std::uintptr_t memory::scan(signature sig) {
+    std::uintptr_t memory::scan(const char* signature, const char* name, int32_t add, bool rip) {
         static auto pattern_to_byte = [](const char* pattern) {
             auto bytes = std::vector<std::pair<int, bool>>{};
             const char* end = pattern;
@@ -67,7 +66,7 @@ namespace base
         auto* const nt_headers = reinterpret_cast<PIMAGE_NT_HEADERS>(reinterpret_cast<std::uint8_t*>(module) + dos_header->e_lfanew);
 
         const auto size_of_image = nt_headers->OptionalHeader.SizeOfImage;
-        auto pattern_bytes = pattern_to_byte(sig.signature);
+        auto pattern_bytes = pattern_to_byte(signature);
         auto* scan_bytes = reinterpret_cast<std::uint8_t*>(module);
 
         const auto s = pattern_bytes.size();
@@ -89,14 +88,14 @@ namespace base
                     }
                 }
                 if (match) {
-                    result = reinterpret_cast<std::uintptr_t>(p + sig.add);
-                    if (sig.rip) {
+                    result = reinterpret_cast<std::uintptr_t>(p + add);
+                    if (rip) {
                         result = (result + *(std::int32_t*)result) + 4;
                     }
                     std::stringstream result_as_hex;
                     result_as_hex << std::hex << std::uppercase << result;
-                    g_log.send("Memory", "Found {} at {}", sig.name, result_as_hex.str());
-                    m_sig_count++;
+                    g_log.send("Memory", "Found {} at {}", name, result_as_hex.str());
+                    g_memory.m_sig_count++;
                     break;
                 }
                 ++p;
@@ -119,18 +118,6 @@ namespace base
             t.join();
         }
         return result;
-    }
-
-    std::vector<std::uintptr_t> memory::scan_multi(const std::vector<signature>& sigs) {
-        std::vector<std::future<std::uintptr_t>> results;
-        for (const auto& sig : sigs) {
-            results.emplace_back(std::async(std::launch::async, &memory::scan, this, sig));
-        }
-        std::vector<std::uintptr_t> final_results;
-        for (auto& result : results) {
-            final_results.emplace_back(result.get());
-        }
-        return final_results;
     }
  }
 

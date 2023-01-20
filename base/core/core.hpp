@@ -7,7 +7,9 @@ namespace base {
 		void detach();
 	public:
 		HMODULE m_module{};
-		bool m_detach_was_called;
+		HANDLE m_main_thread;
+		bool m_steam;
+		DWORD m_main_thread_id;
 	};
 	inline core g_core; 
 };
