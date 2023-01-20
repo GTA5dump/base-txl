@@ -15,7 +15,6 @@
 # Info
 - This base is made for Gta verison 1.69
 - This is made in C++, so try not to judge the code too much. It's my first base
-- Fast pattern scanner 80 sigs in 1.3s 
 - Native hooking 
 - Simple Fiber system 
 - Aligned interface 
