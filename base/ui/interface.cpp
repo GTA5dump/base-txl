@@ -152,6 +152,13 @@ namespace base {
 				}
 				m_previous_tick = GetTickCount64();
 			}
+			else if (GetAsyncKeyState(72)) // h key
+			{
+				if (m_opened) {
+					m_hotkey_pressed = true;
+				}
+				m_previous_tick = GetTickCount64();
+			}
 		}
 	}
 
@@ -167,6 +174,9 @@ namespace base {
 			m_current_menu();
 			draw_footer();
 		}
+		update_hotkeys();
+
+		m_hotkey_pressed = false;
 		m_select_pressed = false;
 		m_up_pressed = false;
 		m_down_pressed = false;
@@ -285,7 +295,68 @@ namespace base {
 		}
 		return false;
 	}
+	
+	void interface::update_hotkeys() {
+		for (const auto& pair : m_toggle_hot_keys) {
+			int key = pair.first;
+			bool* toggle = pair.second;
+			if (GetTickCount64() - m_previous_tick > m_delay) {
+				if (GetAsyncKeyState(key) & 0x8000) {
+					*toggle = !*toggle;
+					m_previous_tick = GetTickCount64();
 
+				}
+			}
+		}
+	}
+	void interface::save_key_toggles(const std::string& filename) {
+		std::ofstream file(filename);
+		if (file.is_open()) {
+			for (const auto& pair : m_toggle_hot_keys) {
+				int key = pair.first;
+				bool toggle = *pair.second;
+
+				file << key << " " << (toggle ? "1" : "0") << std::endl;
+			}
+
+			file.close();
+			g_log.send("hotkeys", "Hotkeys saved.");
+		}
+		else {
+			g_log.send("hotkeys", "Failed to save hotkeys.");
+		}
+	}
+
+	void interface::load_key_toggles(const std::string& filename) {
+		std::ifstream file(filename);
+		if (file.is_open()) {
+			m_toggle_hot_keys.clear();
+
+			int key;
+			int toggleValue;
+			while (file >> key >> toggleValue) {
+				bool toggle = (toggleValue != 0);
+				m_toggle_hot_keys[key] = new bool(toggle);
+			}
+
+			file.close();
+			g_log.send("hotkeys", "Hotkeys loaded.");
+		}
+		else {
+			g_log.send("hotkeys", "Failed to load hotkeys.");
+		}
+	}
+	
+	int interface::get_assigned_key(bool* toggle) {
+		for (const auto& pair : m_toggle_hot_keys) {
+			int key = pair.first;
+			bool* assignedToggle = pair.second;
+			if (assignedToggle == toggle) {
+				return key;
+			}
+		}
+		return -1; 
+	}
 	bool interface::draw_bool(const char* option, bool* toggle) {
 		add_option(option);
 		if (m_current_option <= m_max_vis_options && m_option_count <= m_max_vis_options) { 
@@ -294,10 +365,33 @@ namespace base {
 		else if (m_option_count > (m_current_option - m_max_vis_options) && m_option_count <= m_current_option) {
 			draw_sprite("commonmenu", "common_medal", Vector2(m_menu_pos.x + (m_width / m_right_padding) - (get_spirit_scale(m_toggle_size).x / 3.f), m_last_option_base + (m_option_height / 2.f)), get_spirit_scale(m_toggle_size), 0.f, *toggle ? m_toggle_color_on : m_toggle_color_off);
 		}
+		int assignedKey = get_assigned_key(toggle);
+		if (assignedKey != -1)
+		{
+			// add text to right or whatever..
+		}
 		if (m_option_count <= m_max_vis_options) {
 			m_draw_base_y += m_option_height;
 		}
 		if (m_current_option == m_option_count) {
+			if (m_hotkey_pressed) {
+				for (int key = 0; key < 256; key++) {
+					if (GetAsyncKeyState(key) & 0x8000 && key != 72) {
+						bool keyAlreadyUsed = false;
+						for (const auto& pair : m_toggle_hot_keys) {
+							if (pair.first == key) {
+								keyAlreadyUsed = true;
+								break;
+							}
+						}
+						if (!keyAlreadyUsed) {
+							m_toggle_hot_keys[key] = toggle;
+						}
+
+						break;
+					}
+				}
+			}
 			if (m_select_pressed) {
 				*toggle = !*toggle;
 				return true;

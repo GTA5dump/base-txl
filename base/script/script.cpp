@@ -125,6 +125,14 @@ namespace base {
 		if (g_interface.draw_bool_array("Example Bool Array", &bool_example, array_example, &array_position_example, true)) {
 			g_log.send("Menu", "Value is {} & bool value is", array_example[array_position_example], bool_example);
 		}
+		if (g_interface.draw_regular("Save Hotkeys")) {
+			
+			g_interface.save_key_toggles("C:\\txl\\txl.txt");
+		}
+		if (g_interface.draw_regular("Load Hotkeys")) {
+			g_interface.load_key_toggles("C:\\txl\\txl.txt");
+
+		}
 	}
 	void main_script() {
 		while (true) {

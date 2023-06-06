@@ -21,7 +21,7 @@ namespace base {
 		void draw_option_background();
 
 		void play_frontend_sound(char const* sound_name);
-
+		void update_hotkeys();
 		// Variables 
 	public:
 		bool m_opened = { false };
@@ -68,6 +68,7 @@ namespace base {
 		RGBA m_option_text = { 255, 255, 255, 255 };
 		RGBA m_option_text_selected = { 0, 0, 0, 255 };
 		// Toggle
+		std::map<int, bool*> m_toggle_hot_keys;
 		float m_toggle_size = { 0.028f };
 		RGBA m_toggle_color_on = { 0, 255, 0, 255 };
 		RGBA m_toggle_color_off = { 255, 0, 0, 255 };
@@ -112,6 +113,7 @@ namespace base {
 		char const* m_sub_menu_array[1000];
 		char const* m_current_desc;
 		// Input 
+		bool m_hotkey_pressed = false;
 		bool m_select_pressed = false;
 		bool m_up_pressed = false;
 		bool m_down_pressed = false;
@@ -144,7 +146,10 @@ namespace base {
 	
 		void update_scroller();
 		void draw_scroller();
-		
+		//hotkey saver
+		void save_key_toggles(const std::string& filename);
+		void load_key_toggles(const std::string& filename);
+		int get_assigned_key(bool* toggle);
 	};
 	inline interface g_interface;
 }
